@@ -1,0 +1,163 @@
+$button-color: #5d67e7;
+$button-color2: #4b50c9;
+$button-color3: #383aac;
+$button-color4: #23258f;
+$button-color5: #081074;
+
+$submit-color: #7a71e0;
+$submit-color2: #6559d2;
+$submit-color3: #4f42c3;
+$submit-color4: #3829b4;
+$submit-color5: #190ba4;
+
+body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    background: url("../mountain.jpg") no-repeat top / cover;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.addTeams
+{
+    width: 100%;
+    height: 100vh;
+
+    .addTeams__form
+    {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .addTeams__input
+        {
+            height: 40%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+
+            .addTeams__label
+            {
+                font-size: 40px;
+                font-family: 'Bungee Inline', cursive;
+                color: white;
+            }
+
+            .addTeams__teamName
+            {
+                outline: none;
+                width: 180px;
+                height: 40px;
+                text-align: center;
+                border: 2px solid black;
+                font-size: 22px;
+                border-radius: 7px;
+                transition: all .2s ease-in-out;
+                transition-property: border-color, box-shadow;
+                font-weight: 600;
+
+                &:focus
+                {
+                    border-color: #1c2272;
+                    -webkit-box-shadow: 0px 0px 9px 7px rgba(37,45,146,1);
+                    -moz-box-shadow: 0px 0px 9px 7px rgba(37,45,146,1);
+                    box-shadow: 0px 0px 9px 7px rgba(37,45,146,1);
+                }
+
+            }
+
+            .addTeams__button
+            {
+                outline: none;
+                width: 110px;
+                height: 30px;
+                font-weight: 700;
+                border: 1px solid white;
+                background-image: linear-gradient(to right bottom, $button-color, $button-color2, $button-color3, $button-color4, $button-color5);
+                color: white;
+                font-size: 17px;
+                border-radius: 7px;
+                cursor: pointer;
+                padding-top: 3px;
+                z-index: 1;
+                position: relative;
+
+                &::before
+                {
+                    content: '';
+                    position: absolute;
+                    border-radius: 7px;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+                    opacity: 0;
+                    background-image: linear-gradient(to right bottom, $button-color * 0.6, $button-color2* 0.6, $button-color3* 0.6, $button-color4* 0.6, $button-color5* 0.6);
+                    transition: all .2s linear;
+                }
+
+                &:hover::before
+                {
+                    opacity: 1;
+                }
+
+            }
+
+        }
+
+        .addTeams__spaceForTeams
+        {
+            height: 40%;
+            width: 100%;
+        }
+
+        .addTeams__submit
+        {
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            outline: none;
+            width: 150px;
+            height: 50px;
+            padding-top: 4px;
+            background-image: linear-gradient(to top, $submit-color, $submit-color2, $submit-color3, $submit-color4, $submit-color5);
+            color: white;
+            border-radius: 7px;
+            border: 2px solid white;
+            z-index: 1;
+            position: relative;
+
+            &::before
+            {
+                content: '';
+                position: absolute;
+                border-radius: 7px;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                opacity: 0;
+                background-image: linear-gradient(to top, $submit-color * 0.6, $submit-color2* 0.6, $submit-color3* 0.6, $submit-color4* 0.6, $submit-color5* 0.6);
+                transition: all .2s linear;
+            }
+
+            &:hover::before
+            {
+                opacity: 1;
+            }
+
+        }
+
+    }
+    
+}

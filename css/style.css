@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background: url("../mountain.jpg") no-repeat top/cover;
+  font-family: 'Roboto', sans-serif; }
+
+.addTeams {
+  width: 100%;
+  height: 100vh; }
+  .addTeams .addTeams__form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; }
+    .addTeams .addTeams__form .addTeams__input {
+      height: 40%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column; }
+      .addTeams .addTeams__form .addTeams__input .addTeams__label {
+        font-size: 40px;
+        font-family: 'Bungee Inline', cursive;
+        color: white; }
+      .addTeams .addTeams__form .addTeams__input .addTeams__teamName {
+        outline: none;
+        width: 180px;
+        height: 40px;
+        text-align: center;
+        border: 2px solid black;
+        font-size: 22px;
+        border-radius: 7px;
+        transition: all .2s ease-in-out;
+        transition-property: border-color, box-shadow;
+        font-weight: 600; }
+        .addTeams .addTeams__form .addTeams__input .addTeams__teamName:focus {
+          border-color: #1c2272;
+          -webkit-box-shadow: 0px 0px 9px 7px #252d92;
+          -moz-box-shadow: 0px 0px 9px 7px #252d92;
+          box-shadow: 0px 0px 9px 7px #252d92; }
+      .addTeams .addTeams__form .addTeams__input .addTeams__button {
+        outline: none;
+        width: 110px;
+        height: 30px;
+        font-weight: 700;
+        border: 1px solid white;
+        background-image: linear-gradient(to right bottom, #5d67e7, #4b50c9, #383aac, #23258f, #081074);
+        color: white;
+        font-size: 17px;
+        border-radius: 7px;
+        cursor: pointer;
+        padding-top: 3px;
+        z-index: 1;
+        position: relative; }
+        .addTeams .addTeams__form .addTeams__input .addTeams__button::before {
+          content: '';
+          position: absolute;
+          border-radius: 7px;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          opacity: 0;
+          background-image: linear-gradient(to right bottom, #383e8b, #2d3079, #222367, #151656, #050a46);
+          transition: all .2s linear; }
+        .addTeams .addTeams__form .addTeams__input .addTeams__button:hover::before {
+          opacity: 1; }
+    .addTeams .addTeams__form .addTeams__spaceForTeams {
+      height: 40%;
+      width: 100%; }
+    .addTeams .addTeams__form .addTeams__submit {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 700;
+      outline: none;
+      width: 150px;
+      height: 50px;
+      padding-top: 4px;
+      background-image: linear-gradient(to top, #7a71e0, #6559d2, #4f42c3, #3829b4, #190ba4);
+      color: white;
+      border-radius: 7px;
+      border: 2px solid white;
+      z-index: 1;
+      position: relative; }
+      .addTeams .addTeams__form .addTeams__submit::before {
+        content: '';
+        position: absolute;
+        border-radius: 7px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0;
+        background-image: linear-gradient(to top, #494486, #3d357e, #2f2875, #22196c, #0f0762);
+        transition: all .2s linear; }
+      .addTeams .addTeams__form .addTeams__submit:hover::before {
+        opacity: 1; }
+
+/*# sourceMappingURL=style.css.map */
