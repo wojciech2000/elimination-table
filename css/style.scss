@@ -22,6 +22,24 @@ body
     
 }
 
+.showMessage
+{
+    width: 180px;
+    z-index: 10;
+    border-radius: 10px;
+    background-image: radial-gradient(circle, #902e2e, #9e2727, #ab1f1e, #b71312, #c20000);
+    padding: 15px;
+    color: white;
+    position: absolute;
+    left: 80%;
+    top: 25%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    letter-spacing: 3px;
+    line-height: 35px;
+    border: 2px solid white;
+}
+
 .addTeams
 {
     width: 100%;
@@ -33,7 +51,7 @@ body
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
 
         .addTeams__input
         {
@@ -117,7 +135,24 @@ body
         .addTeams__spaceForTeams
         {
             height: 40%;
-            width: 100%;
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .addTeams__addedTeam
+            {
+                min-width: 100px;
+                background-color: rgb(9, 4, 59);
+                border: 1px solid white;
+                color: white;
+                border-radius: 7px;
+                text-align: center;
+                padding: 10px 15px;
+                margin: 0 20px
+            }
+
         }
 
         .addTeams__submit
@@ -129,31 +164,15 @@ body
             width: 150px;
             height: 50px;
             padding-top: 4px;
-            background-image: linear-gradient(to top, $submit-color, $submit-color2, $submit-color3, $submit-color4, $submit-color5);
+            background-color: #750808;
             color: white;
             border-radius: 7px;
             border: 2px solid white;
-            z-index: 1;
-            position: relative;
+            transition: all .2s linear;
 
-            &::before
+            &:hover
             {
-                content: '';
-                position: absolute;
-                border-radius: 7px;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -1;
-                opacity: 0;
-                background-image: linear-gradient(to top, $submit-color * 0.6, $submit-color2* 0.6, $submit-color3* 0.6, $submit-color4* 0.6, $submit-color5* 0.6);
-                transition: all .2s linear;
-            }
-
-            &:hover::before
-            {
-                opacity: 1;
+                background-color: #530606;
             }
 
         }

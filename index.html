@@ -6,7 +6,7 @@
     <title>Elimination Table</title>
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="main.js"></script>
+
 </head>
 <body>
 
@@ -21,11 +21,13 @@
                     <label for="addTeams__teamName" class="addTeams__label">Podaj nazwę drużyny</label>
                     <input autocomplete="off" type="text" class="addTeams__teamName" id="addTeams__teamName">
     
-                    <button class="addTeams__button">Dodaj</button>
+                    <button type="submit" class="addTeams__button">Dodaj</button>
 
                 </div>
 
-                <div class="addTeams__spaceForTeams"><!-- In this div will be teams' names --></div>
+                <div class="addTeams__spaceForTeams">
+                    <!-- In this div will be teams' names -->
+                </div>
 
                 <button type="submit" class="addTeams__submit">Zatwierdź</button>
             </form>
@@ -34,5 +36,7 @@
 
      </div>
 
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+     <script src="main.js"></script>
 </body>
 </html>
