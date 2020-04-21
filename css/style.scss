@@ -27,7 +27,6 @@ body
     width: 180px;
     z-index: 10;
     border-radius: 10px;
-    background-image: radial-gradient(circle, #902e2e, #9e2727, #ab1f1e, #b71312, #c20000);
     padding: 15px;
     color: white;
     position: absolute;
@@ -35,9 +34,23 @@ body
     top: 25%;
     transform: translate(-50%,-50%);
     text-align: center;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     line-height: 35px;
     border: 2px solid white;
+}
+
+
+.teamDiv
+{
+    min-width: 100px;
+    min-height: 19px;
+    background-color: rgba($color: #12097a, $alpha: .7);
+    border: 1px solid white;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 0 20px;
 }
 
 .addTeams
@@ -143,14 +156,50 @@ body
 
             .addTeams__addedTeam
             {
-                min-width: 100px;
-                background-color: rgb(9, 4, 59);
-                border: 1px solid white;
-                color: white;
-                border-radius: 7px;
-                text-align: center;
-                padding: 10px 15px;
-                margin: 0 20px
+                @extend .teamDiv;
+                transition: all .2s ease-in;
+                transition-property: border-color, background-color;
+                position: relative;
+                cursor: pointer;
+
+                &::before
+                {
+                    content: '';
+                    position: absolute;
+                    left: 25%;
+                    width: 70px;
+                    border: 3px solid #8f1212;
+                    background-color: #8f1212;
+                    border-radius: 10px;
+                    opacity: 0;
+                    transform: rotate(45deg) translateY(10px);
+                    transition: opacity .2s ease-in;
+                }
+
+                &::after
+                {
+                    content: '';
+                    position: absolute;
+                    right: 25%;
+                    width: 70px;
+                    border: 3px solid #8f1212;
+                    background-color: #8f1212;
+                    border-radius: 10px;
+                    opacity: 0;
+                    transform: rotate(-45deg) translateY(10px);
+                    transition: opacity .2s ease-in;
+                }
+
+                &:hover::before
+                {
+                    opacity: 1;
+                }
+
+                &:hover::after
+                {
+                    opacity: 1;
+                }
+
             }
 
         }
@@ -179,4 +228,30 @@ body
 
     }
     
+}
+
+.displayTeams
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column-reverse;
+
+    .displayTeams__ladder
+    {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .displayTeams__teamName
+        {
+            @extend .teamDiv;
+        }
+
+    }
+
 }
