@@ -2,8 +2,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: url("../mountain.jpg") no-repeat top/cover;
   font-family: 'Roboto', sans-serif; }
 
@@ -164,5 +164,9 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center; }
+    .displayTeams .displayTeams__ladder .displayTeams__winner {
+      background-color: green; }
+    .displayTeams .displayTeams__ladder .displayTeams__loser {
+      background-color: red; }
 
 /*# sourceMappingURL=style.css.map */

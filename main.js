@@ -108,7 +108,8 @@ class DisplayTeams {
         const tl = gsap.timeline()
         
         tl.to(addTeams, {opacity: 0, duration: .5})
-        
+    
+
         setTimeout(()=> {
 
             tl.from(eliminationTable, {opacity: 0, duration: .5})
@@ -153,9 +154,61 @@ class DisplayTeams {
     
             })
 
+            DisplayTeams.ChoseWinner()
+
         },500)
 
+    }
 
+    static ChoseWinner()
+    {
+       const table = document.querySelector('.displayTeams') 
+
+       Array.from(table.children).forEach(teams => {
+
+        Array.from(teams.children).forEach((team,id) => {
+
+            team.addEventListener('click', e => {
+
+                const winnerTeam = e.target
+
+
+                if(Number.isInteger(((id+1)/2) - 1))
+                {
+                    //even
+
+                    const previousElement = winnerTeam.previousElementSibling.classList.contains('displayTeams__winner')
+                    const loserTeam = winnerTeam.previousElementSibling
+
+                    DisplayTeams.Promotion(winnerTeam,loserTeam, previousElement, ((id+1)/2) - 1)
+                    
+                }
+                else
+                {
+                    //odd
+
+                    const nextElement = winnerTeam.nextElementSibling.classList.contains('displayTeams__winner')
+                    const loserTeam = winnerTeam.nextElementSibling  
+
+                    DisplayTeams.Promotion(winnerTeam, loserTeam, nextElement, (Math.floor((id+1)/2)))
+                
+                }
+            })
+
+        })
+
+    })
+
+    }
+
+    static Promotion(winnerTeam,loserTeam, preventClickOnLoserTeam, numbrer)
+    {
+        if(!preventClickOnLoserTeam)
+        {
+            winnerTeam.parentNode.nextElementSibling.children[numbrer].textContent = winnerTeam.textContent
+            winnerTeam.classList.add('displayTeams__winner')
+            loserTeam.classList.add('displayTeams__loser')
+        }
     }
 
 }
@@ -212,13 +265,13 @@ teamForm.addEventListener('submit', e => {
 
     const teams = document.querySelectorAll('.addTeams__addedTeam')
 
-    if(teams.length === 2 || teams.length === 4 || teams.length === 8 || teams.length === 16)
+    if(teams.length === 2 || teams.length === 4 || teams.length === 8)
     {
         DisplayTeams.ShuffleTeams(teams)
     }
     else
     {
-        Teams.ShowMessage("Dostępna liczba drużyn to: 2,4,8,16")
+        Teams.ShowMessage("Dostępna liczba drużyn to: 2,4,8")
     }
 
 })
