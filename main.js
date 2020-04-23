@@ -33,7 +33,7 @@ class Teams {
     
             const tl = gsap.timeline()
     
-            tl.from(divMessage, { opacity: 0, y: 50, ease: Elastic.easeOut.config(1, .4), duration: 1.5 })
+            tl.from(divMessage, { opacity: 0, y: 50, ease: Elastic.easeOut.config(1.5, 1), duration: 1.5 })
             setTimeout(()=>{
                 tl.reverse(0).delay(3)
 
@@ -92,12 +92,14 @@ class DisplayTeams {
             shuffledTeams[newPos] = temp
         }
 
-        DisplayTeams.CreateTable(shuffledTeams)
+        this.CreateTable(shuffledTeams)
 
     }
 
     static CreateTable(teams)
     {
+        localStorage.getItem('thirdPlaceMessage') && localStorage.setItem('thirdPlaceMessage', 'false')
+
         const container = document.querySelector('.container')
         const addTeams = document.querySelector('.addTeams')
 
@@ -154,7 +156,9 @@ class DisplayTeams {
     
             })
 
-            DisplayTeams.ChoseWinner()
+            eliminationTable.lastChild.firstChild.classList.add('displayTeams__firstPlace')
+
+            this.ChoseWinner()
 
         },500)
 
@@ -164,38 +168,80 @@ class DisplayTeams {
     {
        const table = document.querySelector('.displayTeams') 
 
+       
+
        Array.from(table.children).forEach(teams => {
 
-        Array.from(teams.children).forEach((team,id) => {
+        const firstPlace = teams.firstChild.classList.contains('displayTeams__firstPlace')
 
-            team.addEventListener('click', e => {
+        if(!firstPlace)
+        {
 
-                const winnerTeam = e.target
+            Array.from(teams.children).forEach((team,id) => {
 
+                team.addEventListener('click', e => {
+    
+                    const winnerTeam = e.target
 
-                if(Number.isInteger(((id+1)/2) - 1))
-                {
-                    //even
+                    if(winnerTeam.textContent)
+                    {
+                        if(Number.isInteger(((id+1)/2) - 1))
+                        {
+                            //even
+        
+                            const previousElement = winnerTeam.previousElementSibling.classList.contains('displayTeams__winner')
+                            const loserTeam = winnerTeam.previousElementSibling
+        
+                            this.Promotion(winnerTeam,loserTeam, previousElement, ((id+1)/2) - 1)
+                            
+                        }
+                        else
+                        {
+                            //odd
+        
+                            const nextElement = winnerTeam.nextElementSibling.classList.contains('displayTeams__winner')
+                            const loserTeam = winnerTeam.nextElementSibling  
+        
+                            this.Promotion(winnerTeam, loserTeam, nextElement, (Math.floor((id+1)/2)))
+                        
+                        }
+                    }
 
-                    const previousElement = winnerTeam.previousElementSibling.classList.contains('displayTeams__winner')
-                    const loserTeam = winnerTeam.previousElementSibling
+                    const firstPlce = table.lastChild.textContent
+                    const secondPlace = Array.from(table.children[table.children.length - 2].children).find(team => team.classList.contains('displayTeams__loser'))
+                    const thirdPlaceTeams = Array.from(table.children[table.children.length - 3].children).filter(team => team.classList.contains('displayTeams__loser'))
 
-                    DisplayTeams.Promotion(winnerTeam,loserTeam, previousElement, ((id+1)/2) - 1)
-                    
-                }
-                else
-                {
-                    //odd
+                    if(firstPlce && secondPlace && thirdPlaceTeams)
+                    {
 
-                    const nextElement = winnerTeam.nextElementSibling.classList.contains('displayTeams__winner')
-                    const loserTeam = winnerTeam.nextElementSibling  
+                        if(localStorage.getItem('thirdPlaceMessage') === 'false')
+                        {
+                            Teams.ShowMessage('Mecz o 3 miejsce')
 
-                    DisplayTeams.Promotion(winnerTeam, loserTeam, nextElement, (Math.floor((id+1)/2)))
-                
-                }
+                            localStorage.setItem('thirdPlaceMessage', true)
+                        }
+
+                        thirdPlaceTeams.forEach(team => {
+
+                            team.classList.add('displayTeams__thirdPlace')
+
+                            team.addEventListener('click', e => {
+
+                                const thirdPlace = e.target.textContent
+
+                                this.Summary(firstPlce, secondPlace.textContent, thirdPlace)
+
+                            })
+
+                        })
+
+                    }
+
+                })
+    
             })
 
-        })
+        }
 
     })
 
@@ -203,16 +249,71 @@ class DisplayTeams {
 
     static Promotion(winnerTeam,loserTeam, preventClickOnLoserTeam, numbrer)
     {
-        if(!preventClickOnLoserTeam)
+        if(!preventClickOnLoserTeam && loserTeam.textContent )
         {
             winnerTeam.parentNode.nextElementSibling.children[numbrer].textContent = winnerTeam.textContent
             winnerTeam.classList.add('displayTeams__winner')
             loserTeam.classList.add('displayTeams__loser')
+
         }
     }
 
-}
+    static Summary(firstPlce, secondPlace, thirdPlace) 
+    {
+        const container = document.querySelector('.container')
+        const summary = document.createElement('div')
+        const eliminationTable = document.querySelector('.displayTeams')
 
+        summary.classList.add('summary')
+
+        const tl = gsap.timeline()
+
+        const winnerTeams = [firstPlce, secondPlace, thirdPlace]
+
+        for(let i = 1; i <= 3; i++)
+        {
+            const div = document.createElement('div')
+
+            div.classList.add(`summary__podium${i}`)
+
+            summary.appendChild(div)
+
+        }
+
+        
+
+        tl.to(eliminationTable, { opacity: 0, duration: .5 })
+
+        setTimeout(()=> {
+
+            tl.from(summary, { opacity: 0, duration: .5 })
+
+            container.replaceChild(summary, eliminationTable)
+    
+            winnerTeams.forEach((team, index) => {
+
+                const span = document.createElement('span')
+                span.textContent = team
+
+                span.classList.add('summary__podiumTeamName')
+
+                summary.children[index].appendChild(span)
+
+                console.log(window.getComputedStyle(summary.children[index]).backgroundColor)
+
+                span.style.backgroundColor = window.getComputedStyle(summary.children[index]).backgroundColor
+
+            })
+
+            summary.insertBefore(summary.children[1],summary.children[0])
+
+        },500)
+
+        
+
+    }
+
+}
 
 const addTeamButton = document.querySelector('.addTeams__button')
 

@@ -2,10 +2,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  background: url("../mountain.jpg") no-repeat top/cover;
   font-family: 'Roboto', sans-serif; }
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url("../mountain.jpg") no-repeat top/cover; }
 
 .showMessage {
   width: 180px;
@@ -14,24 +16,34 @@ body {
   padding: 15px;
   color: white;
   position: absolute;
-  left: 80%;
-  top: 25%;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   letter-spacing: 2px;
   line-height: 35px;
-  border: 2px solid white; }
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0.7); }
 
 .teamDiv, .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam, .displayTeams .displayTeams__ladder .displayTeams__teamName {
   min-width: 100px;
   min-height: 19px;
-  background-color: rgba(18, 9, 122, 0.7);
+  background-color: rgba(99, 25, 25, 0.7);
   border: 1px solid white;
   color: white;
   border-radius: 7px;
   text-align: center;
   padding: 10px 15px;
   margin: 0 20px; }
+
+.podium, .summary .summary__podium1, .summary .summary__podium2, .summary .summary__podium3 {
+  width: 200px;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid black;
+  margin-bottom: 20%;
+  position: relative;
+  display: flex;
+  justify-content: center; }
 
 .addTeams {
   width: 100%;
@@ -114,8 +126,8 @@ body {
           position: absolute;
           left: 25%;
           width: 70px;
-          border: 3px solid #8f1212;
-          background-color: #8f1212;
+          border: 3px solid #d30f0f;
+          background-color: #d30f0f;
           border-radius: 10px;
           opacity: 0;
           transform: rotate(45deg) translateY(10px);
@@ -125,8 +137,8 @@ body {
           position: absolute;
           right: 25%;
           width: 70px;
-          border: 3px solid #8f1212;
-          background-color: #8f1212;
+          border: 3px solid #d30f0f;
+          background-color: #d30f0f;
           border-radius: 10px;
           opacity: 0;
           transform: rotate(-45deg) translateY(10px);
@@ -164,9 +176,52 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center; }
+    .displayTeams .displayTeams__ladder .displayTeams__teamName {
+      cursor: pointer;
+      transition: all .4s ease-in;
+      transition-property: background-color, opacity; }
     .displayTeams .displayTeams__ladder .displayTeams__winner {
-      background-color: green; }
+      background-color: #288828; }
     .displayTeams .displayTeams__ladder .displayTeams__loser {
-      background-color: red; }
+      background-color: #2b2727;
+      opacity: .3; }
+    .displayTeams .displayTeams__ladder .displayTeams__firstPlace {
+      background-color: #cfb000;
+      color: black;
+      -webkit-box-shadow: 0px 0px 102px 31px #e7a61a;
+      -moz-box-shadow: 0px 0px 102px 31px #e7a61a;
+      box-shadow: 0px 0px 102px 31px #e7a61a; }
+    .displayTeams .displayTeams__ladder .displayTeams__thirdPlace {
+      opacity: .9;
+      -webkit-box-shadow: 0px 0px 102px 31px #ffae00;
+      -moz-box-shadow: 0px 0px 102px 31px #ffae00;
+      box-shadow: 0px 0px 102px 31px #ffae00; }
+
+.summary {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; }
+  .summary .summary__podiumTeamName {
+    position: absolute;
+    min-width: 100px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    bottom: 130%;
+    border: 1px solid black;
+    padding: 15px; }
+  .summary .summary__podium1 {
+    background-color: gold;
+    height: 90px; }
+  .summary .summary__podium2 {
+    background-color: silver;
+    height: 60px; }
+  .summary .summary__podium3 {
+    background-color: #85521f;
+    height: 40px; }
 
 /*# sourceMappingURL=style.css.map */

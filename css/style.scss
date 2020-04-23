@@ -10,16 +10,22 @@ $submit-color3: #4f42c3;
 $submit-color4: #3829b4;
 $submit-color5: #190ba4;
 
+$delete: #d30f0f;
+
+
 body
 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    background: url("../mountain.jpg") no-repeat top / cover;
     font-family: 'Roboto', sans-serif;
-    
+}
+
+.container
+{
+    width: 100vw;
+    height: 100vh;
+    background: url("../mountain.jpg") no-repeat top / cover;  
 }
 
 .showMessage
@@ -30,13 +36,14 @@ body
     padding: 15px;
     color: white;
     position: absolute;
-    left: 80%;
-    top: 25%;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
     letter-spacing: 2px;
     line-height: 35px;
     border: 2px solid white;
+    background-color: rgba($color: #000000, $alpha: .7);
 }
 
 
@@ -44,13 +51,24 @@ body
 {
     min-width: 100px;
     min-height: 19px;
-    background-color: rgba($color: #12097a, $alpha: .7);
+    background-color: rgba($color: #631919, $alpha: .7);
     border: 1px solid white;
     color: white;
     border-radius: 7px;
     text-align: center;
     padding: 10px 15px;
     margin: 0 20px;
+}
+
+.podium
+{
+    width: 200px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid black;
+    margin-bottom: 20%;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .addTeams
@@ -168,8 +186,8 @@ body
                     position: absolute;
                     left: 25%;
                     width: 70px;
-                    border: 3px solid #8f1212;
-                    background-color: #8f1212;
+                    border: 3px solid $delete;
+                    background-color: $delete;
                     border-radius: 10px;
                     opacity: 0;
                     transform: rotate(45deg) translateY(10px);
@@ -182,8 +200,8 @@ body
                     position: absolute;
                     right: 25%;
                     width: 70px;
-                    border: 3px solid #8f1212;
-                    background-color: #8f1212;
+                    border: 3px solid $delete;
+                    background-color: $delete;
                     border-radius: 10px;
                     opacity: 0;
                     transform: rotate(-45deg) translateY(10px);
@@ -250,18 +268,85 @@ body
         .displayTeams__teamName
         {
             @extend .teamDiv;
+            cursor: pointer;
+            transition: all .4s ease-in;
+            transition-property: background-color, opacity;
+
         }
 
         .displayTeams__winner
         {
-            background-color: green;
+            background-color: #288828;
         }
 
         .displayTeams__loser
         {
-            background-color: red;
+            background-color: #2b2727;
+            opacity: .3;
         }
 
+        .displayTeams__firstPlace
+        {
+            background-color: #cfb000;
+            color: black;
+            -webkit-box-shadow: 0px 0px 102px 31px #e7a61a;
+            -moz-box-shadow: 0px 0px 102px 31px #e7a61a;
+            box-shadow: 0px 0px 102px 31px #e7a61a;
+        }
+
+        .displayTeams__thirdPlace
+        {
+            opacity: .9;
+            -webkit-box-shadow: 0px 0px 102px 31px #ffae00;
+            -moz-box-shadow: 0px 0px 102px 31px #ffae00;
+            box-shadow: 0px 0px 102px 31px #ffae00;
+        }
+
+    }
+
+}
+
+.summary
+{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .summary__podiumTeamName
+    {
+        position: absolute;
+        min-width: 100px;
+        border-radius: 8px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 22px;
+        bottom: 130%;
+        border: 1px solid black;
+        padding: 15px;
+    }
+
+    .summary__podium1
+    {
+        @extend .podium;
+        background-color: gold;
+        height: 90px;
+    }
+
+    .summary__podium2
+    {
+        @extend .podium;
+        background-color: silver;
+        height: 60px;
+    }
+
+    .summary__podium3
+    {
+        @extend .podium;
+        background-color: #85521f;
+        height: 40px;
     }
 
 }
