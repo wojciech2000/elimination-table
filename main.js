@@ -98,6 +98,7 @@ class DisplayTeams {
 
     static CreateTable(teams)
     {
+        // use localStorage to prevent show multiple times message "Mecz o trzecie miejsce"
         localStorage.getItem('thirdPlaceMessage') && localStorage.setItem('thirdPlaceMessage', 'false')
 
         const container = document.querySelector('.container')
@@ -298,8 +299,6 @@ class DisplayTeams {
                 span.classList.add('summary__podiumTeamName')
 
                 summary.children[index].appendChild(span)
-
-                console.log(window.getComputedStyle(summary.children[index]).backgroundColor)
 
                 span.style.backgroundColor = window.getComputedStyle(summary.children[index]).backgroundColor
 

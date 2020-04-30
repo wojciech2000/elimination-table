@@ -37,7 +37,7 @@ body {
   margin: 0 20px; }
 
 .podium, .summary .summary__podium1, .summary .summary__podium2, .summary .summary__podium3 {
-  width: 200px;
+  width: 20%;
   border-radius: 10px 10px 0 0;
   border: 1px solid black;
   margin-bottom: 20%;
@@ -211,17 +211,17 @@ body {
     color: white;
     font-weight: bold;
     font-size: 22px;
-    bottom: 130%;
+    bottom: 110%;
     border: 1px solid black;
     padding: 15px; }
   .summary .summary__podium1 {
     background-color: gold;
-    height: 90px; }
+    height: 20%; }
   .summary .summary__podium2 {
     background-color: silver;
-    height: 60px; }
+    height: 12%; }
   .summary .summary__podium3 {
     background-color: #85521f;
-    height: 40px; }
+    height: 7%; }
 
 /*# sourceMappingURL=style.css.map */

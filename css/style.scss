@@ -62,7 +62,7 @@ body
 
 .podium
 {
-    width: 200px;
+    width: 20%;
     border-radius: 10px 10px 0 0;
     border: 1px solid black;
     margin-bottom: 20%;
@@ -323,7 +323,7 @@ body
         color: white;
         font-weight: bold;
         font-size: 22px;
-        bottom: 130%;
+        bottom: 110%;
         border: 1px solid black;
         padding: 15px;
     }
@@ -332,21 +332,21 @@ body
     {
         @extend .podium;
         background-color: gold;
-        height: 90px;
+        height: 20%;
     }
 
     .summary__podium2
     {
         @extend .podium;
         background-color: silver;
-        height: 60px;
+        height: 12%;
     }
 
     .summary__podium3
     {
         @extend .podium;
         background-color: #85521f;
-        height: 40px;
+        height: 7%;
     }
 
 }
