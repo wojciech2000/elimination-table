@@ -25,7 +25,7 @@ body
 {
     width: 100vw;
     height: 100vh;
-    background: url("../mountain.jpg") no-repeat top / cover;  
+    background: url("../background.jpg") no-repeat top / cover;
 }
 
 .showMessage
@@ -51,7 +51,7 @@ body
 {
     min-width: 100px;
     min-height: 19px;
-    background-color: rgba($color: #631919, $alpha: .7);
+    background-color: rgba($color: #5576A7, $alpha: .7);
     border: 1px solid white;
     color: white;
     border-radius: 7px;
@@ -98,6 +98,14 @@ body
                 font-size: 40px;
                 font-family: 'Bungee Inline', cursive;
                 color: white;
+
+                @media (max-width: 768px) and (orientation: portrait)
+                {
+                    &
+                    {
+                        font-size: 7vw;
+                    }
+                }
             }
 
             .addTeams__teamName
@@ -106,19 +114,18 @@ body
                 width: 180px;
                 height: 40px;
                 text-align: center;
-                border: 2px solid black;
+                border: 1px solid white;
                 font-size: 22px;
                 border-radius: 7px;
                 transition: all .2s ease-in-out;
                 transition-property: border-color, box-shadow;
                 font-weight: 600;
+                background-color: #0055a5;
+                color: white;
 
                 &:focus
                 {
-                    border-color: #1c2272;
-                    -webkit-box-shadow: 0px 0px 9px 7px rgba(37,45,146,1);
-                    -moz-box-shadow: 0px 0px 9px 7px rgba(37,45,146,1);
-                    box-shadow: 0px 0px 9px 7px rgba(37,45,146,1);
+                    border-color: #000000;
                 }
 
             }
@@ -126,37 +133,22 @@ body
             .addTeams__button
             {
                 outline: none;
+                border: none;
                 width: 110px;
                 height: 30px;
                 font-weight: 700;
-                border: 1px solid white;
-                background-image: linear-gradient(to right bottom, $button-color, $button-color2, $button-color3, $button-color4, $button-color5);
-                color: white;
+                background-color: white;
+                border: 1px solid #0055a5;
+                color: black;
                 font-size: 17px;
                 border-radius: 7px;
                 cursor: pointer;
                 padding-top: 3px;
-                z-index: 1;
-                position: relative;
+                transition: background-color .3s ease;
 
-                &::before
+                &:hover
                 {
-                    content: '';
-                    position: absolute;
-                    border-radius: 7px;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: -1;
-                    opacity: 0;
-                    background-image: linear-gradient(to right bottom, $button-color * 0.6, $button-color2* 0.6, $button-color3* 0.6, $button-color4* 0.6, $button-color5* 0.6);
-                    transition: all .2s linear;
-                }
-
-                &:hover::before
-                {
-                    opacity: 1;
+                    background-color: rgb(231, 231, 231);
                 }
 
             }
@@ -176,48 +168,29 @@ body
             {
                 @extend .teamDiv;
                 transition: all .2s ease-in;
-                transition-property: border-color, background-color;
-                position: relative;
+                transition-property: background-color;
                 cursor: pointer;
 
-                &::before
+                &:hover
                 {
-                    content: '';
-                    position: absolute;
-                    left: 25%;
-                    width: 70px;
-                    border: 3px solid $delete;
-                    background-color: $delete;
-                    border-radius: 10px;
-                    opacity: 0;
-                    transform: rotate(45deg) translateY(10px);
-                    transition: opacity .2s ease-in;
+                    background-color: rgba($color: #b60404, $alpha: .5);
                 }
 
-                &::after
+            }
+
+            @media (max-width: 768px) and (orientation: portrait)
+            {
+                &
                 {
-                    content: '';
-                    position: absolute;
-                    right: 25%;
-                    width: 70px;
-                    border: 3px solid $delete;
-                    background-color: $delete;
-                    border-radius: 10px;
-                    opacity: 0;
-                    transform: rotate(-45deg) translateY(10px);
-                    transition: opacity .2s ease-in;
+                    width: 100%;
+                    height: 45%;
                 }
 
-                &:hover::before
+                .addTeams__addedTeam
                 {
-                    opacity: 1;
+                    min-width: 10vw;
+                    margin: 1px;
                 }
-
-                &:hover::after
-                {
-                    opacity: 1;
-                }
-
             }
 
         }
@@ -231,15 +204,15 @@ body
             width: 150px;
             height: 50px;
             padding-top: 4px;
-            background-color: #750808;
-            color: white;
+            background-color: white;
+            border: 1px solid #0055a5;
+            color: black;
             border-radius: 7px;
-            border: 2px solid white;
-            transition: all .2s linear;
+            transition: background-color .2s linear;
 
             &:hover
             {
-                background-color: #530606;
+                background-color: #e7e7e7;
             }
 
         }
@@ -271,7 +244,6 @@ body
             cursor: pointer;
             transition: all .4s ease-in;
             transition-property: background-color, opacity;
-
         }
 
         .displayTeams__winner
@@ -350,3 +322,4 @@ body
     }
 
 }
+

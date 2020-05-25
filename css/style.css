@@ -7,7 +7,7 @@ body {
 .container {
   width: 100vw;
   height: 100vh;
-  background: url("../mountain.jpg") no-repeat top/cover; }
+  background: url("../background.jpg") no-repeat top/cover; }
 
 .showMessage {
   width: 180px;
@@ -28,7 +28,7 @@ body {
 .teamDiv, .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam, .displayTeams .displayTeams__ladder .displayTeams__teamName {
   min-width: 100px;
   min-height: 19px;
-  background-color: rgba(99, 25, 25, 0.7);
+  background-color: rgba(85, 118, 167, 0.7);
   border: 1px solid white;
   color: white;
   border-radius: 7px;
@@ -65,50 +65,40 @@ body {
         font-size: 40px;
         font-family: 'Bungee Inline', cursive;
         color: white; }
+        @media (max-width: 768px) and (orientation: portrait) {
+          .addTeams .addTeams__form .addTeams__input .addTeams__label {
+            font-size: 7vw; } }
       .addTeams .addTeams__form .addTeams__input .addTeams__teamName {
         outline: none;
         width: 180px;
         height: 40px;
         text-align: center;
-        border: 2px solid black;
+        border: 1px solid white;
         font-size: 22px;
         border-radius: 7px;
         transition: all .2s ease-in-out;
         transition-property: border-color, box-shadow;
-        font-weight: 600; }
+        font-weight: 600;
+        background-color: #0055a5;
+        color: white; }
         .addTeams .addTeams__form .addTeams__input .addTeams__teamName:focus {
-          border-color: #1c2272;
-          -webkit-box-shadow: 0px 0px 9px 7px #252d92;
-          -moz-box-shadow: 0px 0px 9px 7px #252d92;
-          box-shadow: 0px 0px 9px 7px #252d92; }
+          border-color: #000000; }
       .addTeams .addTeams__form .addTeams__input .addTeams__button {
         outline: none;
+        border: none;
         width: 110px;
         height: 30px;
         font-weight: 700;
-        border: 1px solid white;
-        background-image: linear-gradient(to right bottom, #5d67e7, #4b50c9, #383aac, #23258f, #081074);
-        color: white;
+        background-color: white;
+        border: 1px solid #0055a5;
+        color: black;
         font-size: 17px;
         border-radius: 7px;
         cursor: pointer;
         padding-top: 3px;
-        z-index: 1;
-        position: relative; }
-        .addTeams .addTeams__form .addTeams__input .addTeams__button::before {
-          content: '';
-          position: absolute;
-          border-radius: 7px;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-          opacity: 0;
-          background-image: linear-gradient(to right bottom, #383e8b, #2d3079, #222367, #151656, #050a46);
-          transition: all .2s linear; }
-        .addTeams .addTeams__form .addTeams__input .addTeams__button:hover::before {
-          opacity: 1; }
+        transition: background-color .3s ease; }
+        .addTeams .addTeams__form .addTeams__input .addTeams__button:hover {
+          background-color: #e7e7e7; }
     .addTeams .addTeams__form .addTeams__spaceForTeams {
       height: 40%;
       width: 80%;
@@ -118,35 +108,17 @@ body {
       flex-wrap: wrap; }
       .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam {
         transition: all .2s ease-in;
-        transition-property: border-color, background-color;
-        position: relative;
+        transition-property: background-color;
         cursor: pointer; }
-        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam::before {
-          content: '';
-          position: absolute;
-          left: 25%;
-          width: 70px;
-          border: 3px solid #d30f0f;
-          background-color: #d30f0f;
-          border-radius: 10px;
-          opacity: 0;
-          transform: rotate(45deg) translateY(10px);
-          transition: opacity .2s ease-in; }
-        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam::after {
-          content: '';
-          position: absolute;
-          right: 25%;
-          width: 70px;
-          border: 3px solid #d30f0f;
-          background-color: #d30f0f;
-          border-radius: 10px;
-          opacity: 0;
-          transform: rotate(-45deg) translateY(10px);
-          transition: opacity .2s ease-in; }
-        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam:hover::before {
-          opacity: 1; }
-        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam:hover::after {
-          opacity: 1; }
+        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam:hover {
+          background-color: rgba(182, 4, 4, 0.5); }
+      @media (max-width: 768px) and (orientation: portrait) {
+        .addTeams .addTeams__form .addTeams__spaceForTeams {
+          width: 100%;
+          height: 45%; }
+        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam {
+          min-width: 10vw;
+          margin: 1px; } }
     .addTeams .addTeams__form .addTeams__submit {
       cursor: pointer;
       font-size: 20px;
@@ -155,13 +127,13 @@ body {
       width: 150px;
       height: 50px;
       padding-top: 4px;
-      background-color: #750808;
-      color: white;
+      background-color: white;
+      border: 1px solid #0055a5;
+      color: black;
       border-radius: 7px;
-      border: 2px solid white;
-      transition: all .2s linear; }
+      transition: background-color .2s linear; }
       .addTeams .addTeams__form .addTeams__submit:hover {
-        background-color: #530606; }
+        background-color: #e7e7e7; }
 
 .displayTeams {
   width: 100%;
