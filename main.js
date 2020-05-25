@@ -276,7 +276,6 @@ class DisplayTeams {
             div.classList.add(`summary__podium${i}`)
 
             summary.appendChild(div)
-
         }
 
         
@@ -289,20 +288,8 @@ class DisplayTeams {
 
             container.replaceChild(summary, eliminationTable)
     
-            winnerTeams.forEach((team, index) => {
+            winnerTeams.forEach((team, index) => summary.children[index].textContent = team )
 
-                const span = document.createElement('span')
-                span.textContent = team
-
-                span.classList.add('summary__podiumTeamName')
-
-                summary.children[index].appendChild(span)
-
-                span.style.backgroundColor = window.getComputedStyle(summary.children[index]).backgroundColor
-
-            })
-
-            summary.insertBefore(summary.children[1],summary.children[0])
 
         },500)
 

@@ -36,15 +36,6 @@ body {
   padding: 10px 15px;
   margin: 0 20px; }
 
-.podium, .summary .summary__podium1, .summary .summary__podium2, .summary .summary__podium3 {
-  width: 20%;
-  border-radius: 10px 10px 0 0;
-  border: 1px solid black;
-  margin-bottom: 20%;
-  position: relative;
-  display: flex;
-  justify-content: center; }
-
 .addTeams {
   width: 100%;
   height: 100vh; }
@@ -169,31 +160,45 @@ body {
     .displayTeams {
       width: 180%; } }
 
-.summary {
-  width: 100vw;
-  height: 100%;
+.podium, .summary .summary__podium1, .summary .summary__podium2, .summary .summary__podium3 {
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end; }
-  .summary .summary__podiumTeamName {
-    position: absolute;
-    min-width: 100px;
-    border-radius: 8px;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 22px;
-    bottom: 110%;
-    border: 1px solid black;
-    padding: 15px; }
+  align-items: center;
+  justify-content: center; }
+
+.summary {
+  width: 50%;
+  height: 60%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1vw; }
   .summary .summary__podium1 {
     background-color: gold;
-    height: 20%; }
+    width: 55%;
+    height: 30%;
+    font-size: 5em; }
   .summary .summary__podium2 {
     background-color: silver;
-    height: 12%; }
+    width: 45%;
+    height: 20%;
+    font-size: 3.5em; }
   .summary .summary__podium3 {
     background-color: #85521f;
-    height: 7%; }
+    width: 35%;
+    height: 15%;
+    font-size: 2.5em; }
+  @media (max-width: 768px) {
+    .summary {
+      width: 100vw;
+      height: 40%;
+      font-size: 1.5vw; } }
 
 /*# sourceMappingURL=style.css.map */
