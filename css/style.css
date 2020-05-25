@@ -136,18 +136,18 @@ body {
         background-color: #e7e7e7; }
 
 .displayTeams {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: column-reverse; }
+  background: url("../background.jpg") no-repeat top/cover; }
   .displayTeams .displayTeams__ladder {
-    width: 100%;
-    height: 50px;
+    height: 100%;
     display: flex;
     justify-content: space-around;
-    align-items: center; }
+    align-items: center;
+    flex-direction: column; }
     .displayTeams .displayTeams__ladder .displayTeams__teamName {
       cursor: pointer;
       transition: all .4s ease-in;
@@ -164,10 +164,10 @@ body {
       -moz-box-shadow: 0px 0px 102px 31px #e7a61a;
       box-shadow: 0px 0px 102px 31px #e7a61a; }
     .displayTeams .displayTeams__ladder .displayTeams__thirdPlace {
-      opacity: .9;
-      -webkit-box-shadow: 0px 0px 102px 31px #ffae00;
-      -moz-box-shadow: 0px 0px 102px 31px #ffae00;
-      box-shadow: 0px 0px 102px 31px #ffae00; }
+      opacity: .9; }
+  @media (max-width: 768px) and (orientation: portrait) {
+    .displayTeams {
+      width: 180%; } }
 
 .summary {
   width: 100vw;

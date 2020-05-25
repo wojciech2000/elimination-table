@@ -28,7 +28,7 @@ class Teams {
         
             divMessage.textContent = message
             divMessage.classList.add('showMessage')
-    
+
             document.body.appendChild(divMessage)
     
             const tl = gsap.timeline()
@@ -168,8 +168,6 @@ class DisplayTeams {
     static ChoseWinner()
     {
        const table = document.querySelector('.displayTeams') 
-
-       
 
        Array.from(table.children).forEach(teams => {
 
@@ -365,13 +363,13 @@ teamForm.addEventListener('submit', e => {
 
     const teams = document.querySelectorAll('.addTeams__addedTeam')
 
-    if(teams.length === 2 || teams.length === 4 || teams.length === 8)
+    if( teams.length === 4 || teams.length === 8)
     {
         DisplayTeams.ShuffleTeams(teams)
     }
     else
     {
-        Teams.ShowMessage("Dostępna liczba drużyn to: 2,4,8")
+        Teams.ShowMessage("Dostępna liczba drużyn to: 4,8")
     }
 
 })
