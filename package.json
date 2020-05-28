@@ -1,5 +1,5 @@
 {
-  "name": "eliminationTable",
+  "name": "elimination-table",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wojciech2000/Elimination-Table.git"
+    "url": "git+https://github.com/wojciech2000/elimination-table.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wojciech2000/Elimination-Table/issues"
+    "url": "https://github.com/wojciech2000/elimination-table/issues"
   },
-  "homepage": "https://wojciech2000.github.io/Elimination-Table/.",
+  "homepage": "https://wojciech2000.github.io/elimination-table/.",
   "dependencies": {
     "gh-pages": "^2.2.0"
   }

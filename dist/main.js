@@ -99,7 +99,7 @@ class DisplayTeams {
     static CreateTable(teams)
     {
         // use localStorage to prevent show multiple times message "Mecz o trzecie miejsce"
-        localStorage.getItem('thirdPlaceMessage') && localStorage.setItem('thirdPlaceMessage', 'false')
+        localStorage.getItem('thirdPlaceMessage') === 'true' && localStorage.setItem('thirdPlaceMessage', 'false')
 
         const container = document.querySelector('.container')
         const addTeams = document.querySelector('.addTeams')
@@ -212,12 +212,11 @@ class DisplayTeams {
 
                     if(firstPlce && secondPlace && thirdPlaceTeams)
                     {
-
                         if(localStorage.getItem('thirdPlaceMessage') === 'false')
                         {
                             Teams.ShowMessage('Mecz o 3 miejsce')
 
-                            localStorage.setItem('thirdPlaceMessage', true)
+                            localStorage.setItem('thirdPlaceMessage', 'true')
                         }
 
                         thirdPlaceTeams.forEach(team => {
@@ -283,13 +282,11 @@ class DisplayTeams {
         tl.to(eliminationTable, { opacity: 0, duration: .5 })
 
         setTimeout(()=> {
-
-            tl.from(summary, { opacity: 0, duration: .5 })
-
             container.replaceChild(summary, eliminationTable)
+            
+            tl.from(summary, { opacity: 0, duration: .5 })
     
             winnerTeams.forEach((team, index) => summary.children[index].textContent = team )
-
 
         },500)
 
