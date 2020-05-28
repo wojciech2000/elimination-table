@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/wojciech2000/Elimination-Table/issues"
   },
-  "homepage": "https://wojciech2000.github.io/elimination-table/.",
+  "homepage": "https://wojciech2000.github.io/Elimination-Table/.",
   "dependencies": {
     "gh-pages": "^2.2.0"
   }
