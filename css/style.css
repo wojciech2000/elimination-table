@@ -1,0 +1,204 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif; }
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url("../background.jpg") no-repeat top/cover; }
+
+.showMessage {
+  width: 180px;
+  z-index: 10;
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 35px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.teamDiv, .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam, .displayTeams .displayTeams__ladder .displayTeams__teamName {
+  min-width: 100px;
+  min-height: 19px;
+  background-color: rgba(85, 118, 167, 0.7);
+  border: 1px solid white;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+  padding: 10px 15px;
+  margin: 0 20px; }
+
+.addTeams {
+  width: 100%;
+  height: 100vh; }
+  .addTeams .addTeams__form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; }
+    .addTeams .addTeams__form .addTeams__input {
+      height: 40%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column; }
+      .addTeams .addTeams__form .addTeams__input .addTeams__label {
+        font-size: 40px;
+        font-family: 'Bungee Inline', cursive;
+        color: white; }
+        @media (max-width: 768px) and (orientation: portrait) {
+          .addTeams .addTeams__form .addTeams__input .addTeams__label {
+            font-size: 7vw; } }
+      .addTeams .addTeams__form .addTeams__input .addTeams__teamName {
+        outline: none;
+        width: 180px;
+        height: 40px;
+        text-align: center;
+        border: 1px solid white;
+        font-size: 22px;
+        border-radius: 7px;
+        transition: all .2s ease-in-out;
+        transition-property: border-color, box-shadow;
+        font-weight: 600;
+        background-color: #0055a5;
+        color: white; }
+        .addTeams .addTeams__form .addTeams__input .addTeams__teamName:focus {
+          border-color: #000000; }
+      .addTeams .addTeams__form .addTeams__input .addTeams__button {
+        outline: none;
+        border: none;
+        width: 110px;
+        height: 30px;
+        font-weight: 700;
+        background-color: white;
+        border: 1px solid #0055a5;
+        color: black;
+        font-size: 17px;
+        border-radius: 7px;
+        cursor: pointer;
+        padding-top: 3px;
+        transition: background-color .3s ease; }
+        .addTeams .addTeams__form .addTeams__input .addTeams__button:hover {
+          background-color: #e7e7e7; }
+    .addTeams .addTeams__form .addTeams__spaceForTeams {
+      height: 40%;
+      width: 80%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap; }
+      .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam {
+        transition: all .2s ease-in;
+        transition-property: background-color;
+        cursor: pointer; }
+        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam:hover {
+          background-color: rgba(182, 4, 4, 0.5); }
+      @media (max-width: 768px) and (orientation: portrait) {
+        .addTeams .addTeams__form .addTeams__spaceForTeams {
+          width: 100%;
+          height: 45%; }
+        .addTeams .addTeams__form .addTeams__spaceForTeams .addTeams__addedTeam {
+          min-width: 10vw;
+          margin: 1px; } }
+    .addTeams .addTeams__form .addTeams__submit {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 700;
+      outline: none;
+      width: 150px;
+      height: 50px;
+      padding-top: 4px;
+      background-color: white;
+      border: 1px solid #0055a5;
+      color: black;
+      border-radius: 7px;
+      transition: background-color .2s linear; }
+      .addTeams .addTeams__form .addTeams__submit:hover {
+        background-color: #e7e7e7; }
+
+.displayTeams {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: url("../background.jpg") no-repeat top/cover; }
+  .displayTeams .displayTeams__ladder {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column; }
+    .displayTeams .displayTeams__ladder .displayTeams__teamName {
+      cursor: pointer;
+      transition: all .4s ease-in;
+      transition-property: background-color, opacity; }
+    .displayTeams .displayTeams__ladder .displayTeams__winner {
+      background-color: #288828; }
+    .displayTeams .displayTeams__ladder .displayTeams__loser {
+      background-color: #2b2727;
+      opacity: .3; }
+    .displayTeams .displayTeams__ladder .displayTeams__firstPlace {
+      background-color: #cfb000;
+      color: black;
+      -webkit-box-shadow: 0px 0px 102px 31px #e7a61a;
+      -moz-box-shadow: 0px 0px 102px 31px #e7a61a;
+      box-shadow: 0px 0px 102px 31px #e7a61a; }
+    .displayTeams .displayTeams__ladder .displayTeams__thirdPlace {
+      opacity: .9; }
+  @media (max-width: 768px) and (orientation: portrait) {
+    .displayTeams {
+      width: 180%; } }
+
+.podium, .summary .summary__podium1, .summary .summary__podium2, .summary .summary__podium3 {
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.summary {
+  width: 50%;
+  height: 60%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1vw; }
+  .summary .summary__podium1 {
+    background-color: gold;
+    width: 55%;
+    height: 30%;
+    font-size: 5em; }
+  .summary .summary__podium2 {
+    background-color: silver;
+    width: 45%;
+    height: 20%;
+    font-size: 3.5em; }
+  .summary .summary__podium3 {
+    background-color: #85521f;
+    width: 35%;
+    height: 15%;
+    font-size: 2.5em; }
+  @media (max-width: 768px) {
+    .summary {
+      width: 100vw;
+      height: 40%;
+      font-size: 1.5vw; } }
+
+/*# sourceMappingURL=style.css.map */

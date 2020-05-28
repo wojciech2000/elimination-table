@@ -1,0 +1,335 @@
+$button-color: #5d67e7;
+$button-color2: #4b50c9;
+$button-color3: #383aac;
+$button-color4: #23258f;
+$button-color5: #081074;
+
+$submit-color: #7a71e0;
+$submit-color2: #6559d2;
+$submit-color3: #4f42c3;
+$submit-color4: #3829b4;
+$submit-color5: #190ba4;
+
+$delete: #d30f0f;
+
+
+body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container
+{
+    width: 100vw;
+    height: 100vh;
+    background: url("../background.jpg") no-repeat top / cover;
+}
+
+.showMessage
+{
+    width: 180px;
+    z-index: 10;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 35px;
+    border: 2px solid white;
+    background-color: rgba($color: #000000, $alpha: .7);
+}
+
+
+.teamDiv
+{
+    min-width: 100px;
+    min-height: 19px;
+    background-color: rgba($color: #5576A7, $alpha: .7);
+    border: 1px solid white;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 0 20px;
+}
+
+.addTeams
+{
+    width: 100%;
+    height: 100vh;
+
+    .addTeams__form
+    {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .addTeams__input
+        {
+            height: 40%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+
+            .addTeams__label
+            {
+                font-size: 40px;
+                font-family: 'Bungee Inline', cursive;
+                color: white;
+
+                @media (max-width: 768px) and (orientation: portrait)
+                {
+                    &
+                    {
+                        font-size: 7vw;
+                    }
+                }
+            }
+
+            .addTeams__teamName
+            {
+                outline: none;
+                width: 180px;
+                height: 40px;
+                text-align: center;
+                border: 1px solid white;
+                font-size: 22px;
+                border-radius: 7px;
+                transition: all .2s ease-in-out;
+                transition-property: border-color, box-shadow;
+                font-weight: 600;
+                background-color: #0055a5;
+                color: white;
+
+                &:focus
+                {
+                    border-color: #000000;
+                }
+
+            }
+
+            .addTeams__button
+            {
+                outline: none;
+                border: none;
+                width: 110px;
+                height: 30px;
+                font-weight: 700;
+                background-color: white;
+                border: 1px solid #0055a5;
+                color: black;
+                font-size: 17px;
+                border-radius: 7px;
+                cursor: pointer;
+                padding-top: 3px;
+                transition: background-color .3s ease;
+
+                &:hover
+                {
+                    background-color: rgb(231, 231, 231);
+                }
+
+            }
+
+        }
+
+        .addTeams__spaceForTeams
+        {
+            height: 40%;
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .addTeams__addedTeam
+            {
+                @extend .teamDiv;
+                transition: all .2s ease-in;
+                transition-property: background-color;
+                cursor: pointer;
+
+                &:hover
+                {
+                    background-color: rgba($color: #b60404, $alpha: .5);
+                }
+
+            }
+
+            @media (max-width: 768px) and (orientation: portrait)
+            {
+                &
+                {
+                    width: 100%;
+                    height: 45%;
+                }
+
+                .addTeams__addedTeam
+                {
+                    min-width: 10vw;
+                    margin: 1px;
+                }
+            }
+
+        }
+
+        .addTeams__submit
+        {
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            outline: none;
+            width: 150px;
+            height: 50px;
+            padding-top: 4px;
+            background-color: white;
+            border: 1px solid #0055a5;
+            color: black;
+            border-radius: 7px;
+            transition: background-color .2s linear;
+
+            &:hover
+            {
+                background-color: #e7e7e7;
+            }
+
+        }
+
+    }
+    
+}
+
+.displayTeams
+{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: url("../background.jpg") no-repeat top / cover;
+
+    .displayTeams__ladder
+    {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+
+        .displayTeams__teamName
+        {
+            @extend .teamDiv;
+            cursor: pointer;
+            transition: all .4s ease-in;
+            transition-property: background-color, opacity;
+        }
+
+        .displayTeams__winner
+        {
+            background-color: #288828;
+        }
+
+        .displayTeams__loser
+        {
+            background-color: #2b2727;
+            opacity: .3;
+        }
+
+        .displayTeams__firstPlace
+        {
+            background-color: #cfb000;
+            color: black;
+            -webkit-box-shadow: 0px 0px 102px 31px #e7a61a;
+            -moz-box-shadow: 0px 0px 102px 31px #e7a61a;
+            box-shadow: 0px 0px 102px 31px #e7a61a;
+        }
+
+        .displayTeams__thirdPlace
+        {
+            opacity: .9;
+        }
+
+    }
+
+    @media (max-width: 768px) and (orientation: portrait)
+    {
+        &
+        {
+            width: 180%;
+        }
+    }
+
+}
+
+.podium
+{
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary
+{
+    width: 50%;
+    height: 60%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1vw;
+
+
+    .summary__podium1
+    {
+        @extend .podium; 
+        background-color: gold;
+        width: 55%;
+        height: 30%;
+        font-size: 5em;
+    } 
+
+    .summary__podium2
+    {
+        @extend .podium; 
+        background-color: silver;
+        width: 45%;
+        height: 20%;
+        font-size: 3.5em;
+    }
+
+    .summary__podium3
+    {
+        @extend .podium; 
+        background-color: #85521f;
+        width: 35%;
+        height: 15%;
+        font-size: 2.5em;
+    }
+
+    @media (max-width: 768px)
+    {
+        width: 100vw;
+        height: 40%;
+        font-size: 1.5vw;
+    }
+
+}
+
