@@ -1,0 +1,23 @@
+{
+  "name": "eliminationTable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wojciech2000/Elimination-Table.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wojciech2000/Elimination-Table/issues"
+  },
+  "homepage": "https://wojciech2000.github.io/elimination-table/.",
+  "dependencies": {
+    "gh-pages": "^2.2.0"
+  }
+}
