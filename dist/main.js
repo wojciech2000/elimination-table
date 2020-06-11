@@ -73,6 +73,11 @@ class Teams {
 
 class DisplayTeams {
 
+    constructor()
+    {
+        this.runAnimationOnce = false
+    }
+
     static ShuffleTeams(teams)
     {
         let shuffledTeams = []
@@ -98,9 +103,6 @@ class DisplayTeams {
 
     static CreateTable(teams)
     {
-        // use localStorage to prevent show multiple times message "Mecz o trzecie miejsce"
-        localStorage.getItem('thirdPlaceMessage') === 'true' && localStorage.setItem('thirdPlaceMessage', 'false')
-
         const container = document.querySelector('.container')
         const addTeams = document.querySelector('.addTeams')
 
@@ -212,12 +214,14 @@ class DisplayTeams {
 
                     if(firstPlce && secondPlace && thirdPlaceTeams)
                     {
-                        if(localStorage.getItem('thirdPlaceMessage') === 'false')
+                        
+                        if(!this.runAnimationOnce)
                         {
                             Teams.ShowMessage('Mecz o 3 miejsce')
-
-                            localStorage.setItem('thirdPlaceMessage', 'true')
+                            this.runAnimationOnce = true
                         }
+
+                        
 
                         thirdPlaceTeams.forEach(team => {
 
@@ -288,7 +292,7 @@ class DisplayTeams {
     
             winnerTeams.forEach((team, index) => summary.children[index].textContent = team )
 
-        },500)
+        },550)
 
         
 
