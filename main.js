@@ -21,28 +21,17 @@ class Teams {
     {
         const egzistingDivMessage = document.querySelector('.showMessage')
 
-        if(!egzistingDivMessage)
-        {
-
-            const divMessage = document.createElement('div')
+        egzistingDivMessage && egzistingDivMessage.remove()
+        const divMessage = document.createElement('div')
         
-            divMessage.textContent = message
-            divMessage.classList.add('showMessage')
+        divMessage.textContent = message
+        divMessage.classList.add('showMessage')
 
-            document.body.appendChild(divMessage)
+        document.body.appendChild(divMessage)
     
-            const tl = gsap.timeline()
+        const tl = gsap.timeline()
     
-            tl.from(divMessage, { opacity: 0, y: 50, ease: Elastic.easeOut.config(1.5, 1), duration: 1.5 })
-            setTimeout(()=>{
-                tl.reverse(0).delay(3)
-
-                setTimeout(()=> {
-                    divMessage.remove()
-                },4500)
-            }, 1500)
-
-        }
+        tl.from(divMessage, { opacity: 0, y: 50, ease: Elastic.easeOut.config(2, 1),yoyo: true, repeat:1, repeatDelay: 1, duration: 1.5, })
 
     }
 
