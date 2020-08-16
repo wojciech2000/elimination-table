@@ -1,354 +1,302 @@
-'use strict'
+"use strict";
+
+const showMessage = message => {
+  const egzistingDivMessage = document.querySelector(".showMessage");
+
+  egzistingDivMessage && egzistingDivMessage.remove();
+  const divMessage = document.createElement("div");
+
+  divMessage.textContent = message;
+  divMessage.classList.add("showMessage");
+
+  document.body.appendChild(divMessage);
+
+  const tl = gsap.timeline();
+
+  tl.from(divMessage, {
+    opacity: 0,
+    y: 50,
+    ease: Elastic.easeOut.config(2, 1),
+    yoyo: true,
+    repeat: 1,
+    repeatDelay: 1,
+    duration: 1.5,
+  });
+};
 
 class Teams {
+  static AddTeam(teamName) {
+    const spaceForTeams = document.querySelector(".addTeams__spaceForTeams");
+    const teamDiv = document.createElement("div");
 
-    static AddTeam(teamName) 
-    {
+    teamDiv.textContent = teamName;
+    teamDiv.classList.add("addTeams__addedTeam");
 
-        const spaceForTeams = document.querySelector('.addTeams__spaceForTeams')
-        const teamDiv = document.createElement('div')
+    spaceForTeams.appendChild(teamDiv);
 
-        teamDiv.textContent = teamName
-        teamDiv.classList.add('addTeams__addedTeam')
+    const tl = gsap.timeline();
 
-        spaceForTeams.appendChild(teamDiv)
+    tl.from(teamDiv, { opacity: 0, x: 30, duration: 0.5 });
+  }
 
-        const tl = gsap.timeline()
+  static CheckName(teamName) {
+    const teamNames = document.querySelectorAll(".addTeams__addedTeam");
 
-        tl.from(teamDiv, { opacity: 0, x: 30, duration: .5 })
+    if (teamNames.length) {
+      const findTeam = Array.from(teamNames).find(
+        team => team.textContent.toLowerCase() === teamName.toLowerCase()
+      );
 
+      return findTeam && true;
     }
+  }
 
-    static ShowMessage(message)
-    {
-        const egzistingDivMessage = document.querySelector('.showMessage')
+  static RemoveTeam(teamName) {
+    const tl = gsap.timeline();
 
-        egzistingDivMessage && egzistingDivMessage.remove()
-        const divMessage = document.createElement('div')
-        
-        divMessage.textContent = message
-        divMessage.classList.add('showMessage')
+    tl.to(teamName, { opacity: 0, x: 30, duration: 0.5 });
 
-        document.body.appendChild(divMessage)
-    
-        const tl = gsap.timeline()
-    
-        tl.from(divMessage, { opacity: 0, y: 50, ease: Elastic.easeOut.config(2, 1),yoyo: true, repeat:1, repeatDelay: 1, duration: 1.5, })
-
-    }
-
-    static CheckName(teamName)
-    {
-        const teamNames = document.querySelectorAll('.addTeams__addedTeam')
-
-        if(teamNames.length)
-        {
-            const findTeam = Array.from(teamNames).find(team => team.textContent.toLowerCase() === teamName.toLowerCase())
-
-            return (findTeam && true)
-        }
-
-    }
-
-    static RemoveTeam(teamName)
-    {
-        const tl = gsap.timeline()
-
-        tl.to(teamName, { opacity: 0, x: 30, duration: .5 })
-
-        setTimeout(()=> teamName.remove(), 500)
-
-    }
-
+    setTimeout(() => teamName.remove(), 500);
+  }
 }
 
 class DisplayTeams {
+  constructor() {
+    this.runAnimationOnce = false;
+  }
 
-    constructor()
-    {
-        this.runAnimationOnce = false
+  static ShuffleTeams(teams) {
+    let shuffledTeams = [];
+
+    for (let i of teams) {
+      shuffledTeams.push(i.textContent);
     }
 
-    static ShuffleTeams(teams)
-    {
-        let shuffledTeams = []
+    let newPos, temp;
 
-        for(let i of teams)
-        {
-            shuffledTeams.push(i.textContent)
-        }
-
-        let newPos, temp
-
-        for(let i = shuffledTeams.length - 1; i > 0; i--)
-        {
-            newPos = Math.floor(Math.random() * (i+1))
-            temp = shuffledTeams[i]
-            shuffledTeams[i] = shuffledTeams[newPos]
-            shuffledTeams[newPos] = temp
-        }
-
-        this.CreateTable(shuffledTeams)
-
+    for (let i = shuffledTeams.length - 1; i > 0; i--) {
+      newPos = Math.floor(Math.random() * (i + 1));
+      temp = shuffledTeams[i];
+      shuffledTeams[i] = shuffledTeams[newPos];
+      shuffledTeams[newPos] = temp;
     }
 
-    static CreateTable(teams)
-    {
-        const container = document.querySelector('.container')
-        const addTeams = document.querySelector('.addTeams')
+    this.CreateTable(shuffledTeams);
+  }
 
-        const eliminationTable = document.createElement('div')
+  static CreateTable(teams) {
+    const container = document.querySelector(".container");
+    const addTeams = document.querySelector(".addTeams");
 
-        eliminationTable.classList.add('displayTeams')
+    const eliminationTable = document.createElement("div");
 
-        const tl = gsap.timeline()
-        
-        tl.to(addTeams, {opacity: 0, duration: .5})
-    
+    eliminationTable.classList.add("displayTeams");
 
-        setTimeout(()=> {
+    const tl = gsap.timeline();
 
-            tl.from(eliminationTable, {opacity: 0, duration: .5})
+    tl.to(addTeams, { opacity: 0, duration: 0.5 });
 
-            container.replaceChild(eliminationTable,addTeams)
+    setTimeout(() => {
+      tl.from(eliminationTable, { opacity: 0, duration: 0.5 });
 
-            let teamsName = []
-    
-            for(let i = teams.length; i >= 1; i /= 2)
-            {
-                teamsName.push(i)
+      container.replaceChild(eliminationTable, addTeams);
+
+      let teamsName = [];
+
+      for (let i = teams.length; i >= 1; i /= 2) {
+        teamsName.push(i);
+      }
+
+      for (let i = teamsName.length; i > 0; i--) {
+        const div = document.createElement("div");
+        div.classList.add("displayTeams__ladder");
+
+        eliminationTable.appendChild(div);
+      }
+
+      teamsName.forEach((teamRowNumber, index) => {
+        const teamsLadder = document.querySelectorAll(".displayTeams__ladder");
+
+        for (let i = teamRowNumber; i > 0; i--) {
+          const div = document.createElement("div");
+
+          div.classList.add("displayTeams__teamName");
+
+          teamsLadder[index].appendChild(div);
+        }
+
+        if (index === 0) {
+          Array.from(teamsLadder[0].children).forEach((team, index) => {
+            team.classList.add("displayTeams__teamName");
+            team.textContent = teams[index];
+          });
+        }
+      });
+
+      eliminationTable.lastChild.firstChild.classList.add(
+        "displayTeams__firstPlace"
+      );
+
+      this.ChoseWinner();
+    }, 500);
+  }
+
+  static ChoseWinner() {
+    const table = document.querySelector(".displayTeams");
+
+    Array.from(table.children).forEach(teams => {
+      const firstPlace = teams.firstChild.classList.contains(
+        "displayTeams__firstPlace"
+      );
+
+      if (!firstPlace) {
+        Array.from(teams.children).forEach((team, id) => {
+          team.addEventListener("click", e => {
+            const winnerTeam = e.target;
+
+            if (winnerTeam.textContent) {
+              if (Number.isInteger((id + 1) / 2 - 1)) {
+                //even
+
+                const previousElement = winnerTeam.previousElementSibling.classList.contains(
+                  "displayTeams__winner"
+                );
+                const loserTeam = winnerTeam.previousElementSibling;
+
+                this.Promotion(
+                  winnerTeam,
+                  loserTeam,
+                  previousElement,
+                  (id + 1) / 2 - 1
+                );
+              } else {
+                //odd
+
+                const nextElement = winnerTeam.nextElementSibling.classList.contains(
+                  "displayTeams__winner"
+                );
+                const loserTeam = winnerTeam.nextElementSibling;
+
+                this.Promotion(
+                  winnerTeam,
+                  loserTeam,
+                  nextElement,
+                  Math.floor((id + 1) / 2)
+                );
+              }
             }
-    
-            for(let i = teamsName.length; i > 0; i--)
-            {
-                const div = document.createElement('div')
-                div.classList.add('displayTeams__ladder')
-    
-                eliminationTable.appendChild(div)
+
+            const firstPlce = table.lastChild.textContent;
+            const secondPlace = Array.from(
+              table.children[table.children.length - 2].children
+            ).find(team => team.classList.contains("displayTeams__loser"));
+            const thirdPlaceTeams = Array.from(
+              table.children[table.children.length - 3].children
+            ).filter(team => team.classList.contains("displayTeams__loser"));
+
+            if (firstPlce && secondPlace && thirdPlaceTeams) {
+              if (!this.runAnimationOnce) {
+                showMessage("Mecz o 3 miejsce");
+                this.runAnimationOnce = true;
+              }
+
+              thirdPlaceTeams.forEach(team => {
+                team.classList.add("displayTeams__thirdPlace");
+
+                team.addEventListener("click", e => {
+                  const thirdPlace = e.target.textContent;
+
+                  this.Summary(firstPlce, secondPlace.textContent, thirdPlace);
+                });
+              });
             }
-    
-            teamsName.forEach((teamRowNumber,index) => {
-    
-            const teamsLadder = document.querySelectorAll('.displayTeams__ladder')
-    
-            for(let i = teamRowNumber; i > 0; i--)
-            {
-                const div = document.createElement('div')
-    
-                div.classList.add('displayTeams__teamName')
-    
-                teamsLadder[index].appendChild(div)
-            }
-    
-            if(index === 0)
-            {
-                Array.from(teamsLadder[0].children).forEach((team,index) => {
-                team.classList.add('displayTeams__teamName')
-                team.textContent = teams[index]
-                })
-            }
-    
-            })
+          });
+        });
+      }
+    });
+  }
 
-            eliminationTable.lastChild.firstChild.classList.add('displayTeams__firstPlace')
+  static Promotion(winnerTeam, loserTeam, preventClickOnLoserTeam, numbrer) {
+    if (!preventClickOnLoserTeam && loserTeam.textContent) {
+      winnerTeam.parentNode.nextElementSibling.children[numbrer].textContent =
+        winnerTeam.textContent;
+      winnerTeam.classList.add("displayTeams__winner");
+      loserTeam.classList.add("displayTeams__loser");
+    }
+  }
 
-            this.ChoseWinner()
+  static Summary(firstPlce, secondPlace, thirdPlace) {
+    const container = document.querySelector(".container");
+    const summary = document.createElement("div");
+    const eliminationTable = document.querySelector(".displayTeams");
 
-        },500)
+    summary.classList.add("summary");
 
+    const tl = gsap.timeline();
+
+    const winnerTeams = [firstPlce, secondPlace, thirdPlace];
+
+    for (let i = 1; i <= 3; i++) {
+      const div = document.createElement("div");
+
+      div.classList.add(`summary__podium${i}`);
+
+      summary.appendChild(div);
     }
 
-    static ChoseWinner()
-    {
-       const table = document.querySelector('.displayTeams') 
+    tl.to(eliminationTable, { opacity: 0, duration: 0.5 });
 
-       Array.from(table.children).forEach(teams => {
+    setTimeout(() => {
+      container.replaceChild(summary, eliminationTable);
 
-        const firstPlace = teams.firstChild.classList.contains('displayTeams__firstPlace')
+      tl.from(summary, { opacity: 0, duration: 0.5 });
 
-        if(!firstPlace)
-        {
-
-            Array.from(teams.children).forEach((team,id) => {
-
-                team.addEventListener('click', e => {
-    
-                    const winnerTeam = e.target
-
-                    if(winnerTeam.textContent)
-                    {
-                        if(Number.isInteger(((id+1)/2) - 1))
-                        {
-                            //even
-        
-                            const previousElement = winnerTeam.previousElementSibling.classList.contains('displayTeams__winner')
-                            const loserTeam = winnerTeam.previousElementSibling
-        
-                            this.Promotion(winnerTeam,loserTeam, previousElement, ((id+1)/2) - 1)
-                            
-                        }
-                        else
-                        {
-                            //odd
-        
-                            const nextElement = winnerTeam.nextElementSibling.classList.contains('displayTeams__winner')
-                            const loserTeam = winnerTeam.nextElementSibling  
-        
-                            this.Promotion(winnerTeam, loserTeam, nextElement, (Math.floor((id+1)/2)))
-                        
-                        }
-                    }
-
-                    const firstPlce = table.lastChild.textContent
-                    const secondPlace = Array.from(table.children[table.children.length - 2].children).find(team => team.classList.contains('displayTeams__loser'))
-                    const thirdPlaceTeams = Array.from(table.children[table.children.length - 3].children).filter(team => team.classList.contains('displayTeams__loser'))
-
-                    if(firstPlce && secondPlace && thirdPlaceTeams)
-                    {
-                        
-                        if(!this.runAnimationOnce)
-                        {
-                            Teams.ShowMessage('Mecz o 3 miejsce')
-                            this.runAnimationOnce = true
-                        }
-
-                        
-
-                        thirdPlaceTeams.forEach(team => {
-
-                            team.classList.add('displayTeams__thirdPlace')
-
-                            team.addEventListener('click', e => {
-
-                                const thirdPlace = e.target.textContent
-
-                                this.Summary(firstPlce, secondPlace.textContent, thirdPlace)
-
-                            })
-
-                        })
-
-                    }
-
-                })
-    
-            })
-
-        }
-
-    })
-
-    }
-
-    static Promotion(winnerTeam,loserTeam, preventClickOnLoserTeam, numbrer)
-    {
-        if(!preventClickOnLoserTeam && loserTeam.textContent )
-        {
-            winnerTeam.parentNode.nextElementSibling.children[numbrer].textContent = winnerTeam.textContent
-            winnerTeam.classList.add('displayTeams__winner')
-            loserTeam.classList.add('displayTeams__loser')
-
-        }
-    }
-
-    static Summary(firstPlce, secondPlace, thirdPlace) 
-    {
-        const container = document.querySelector('.container')
-        const summary = document.createElement('div')
-        const eliminationTable = document.querySelector('.displayTeams')
-
-        summary.classList.add('summary')
-
-        const tl = gsap.timeline()
-
-        const winnerTeams = [firstPlce, secondPlace, thirdPlace]
-
-        for(let i = 1; i <= 3; i++)
-        {
-            const div = document.createElement('div')
-
-            div.classList.add(`summary__podium${i}`)
-
-            summary.appendChild(div)
-        }
-
-        
-
-        tl.to(eliminationTable, { opacity: 0, duration: .5 })
-
-        setTimeout(()=> {
-            container.replaceChild(summary, eliminationTable)
-            
-            tl.from(summary, { opacity: 0, duration: .5 })
-    
-            winnerTeams.forEach((team, index) => summary.children[index].textContent = team )
-
-        },550)
-
-        
-
-    }
-
+      winnerTeams.forEach(
+        (team, index) => (summary.children[index].textContent = team)
+      );
+    }, 550);
+  }
 }
 
-const addTeamButton = document.querySelector('.addTeams__button')
+const addTeamButton = document.querySelector(".addTeams__button");
 
-addTeamButton.addEventListener('click', e => {
+addTeamButton.addEventListener("click", e => {
+  e.preventDefault();
 
-    e.preventDefault()
+  const teamName = document.querySelector(".addTeams__teamName");
 
-    const teamName = document.querySelector('.addTeams__teamName')
+  const checkDuplication = Teams.CheckName(teamName.value);
 
-    const checkDuplication = Teams.CheckName(teamName.value)
+  if (!teamName.value) {
+    showMessage("Uzupełnij pole");
+  } else if (checkDuplication) {
+    showMessage("Taka nazwa drużyny już istnieje");
+  } else if (teamName.value.length > 11) {
+    showMessage("za długa nazwa drużyny (max 11 znaków)");
+  } else if (teamName.value) {
+    Teams.AddTeam(teamName.value);
+    teamName.value = "";
+  }
 
-    if(!teamName.value)
-    {
-        Teams.ShowMessage('Uzupełnij pole')
-    }
-    else if(checkDuplication)
-    {
-        Teams.ShowMessage('Taka nazwa drużyny już istnieje')
-    }
-    else if(teamName.value.length > 11)
-    {
-        Teams.ShowMessage('za długa nazwa drużyny (max 11 znaków)')
-    }
-    else if(teamName.value)
-    {
-        Teams.AddTeam(teamName.value)
-        teamName.value = ''
-    }
+  const teams = document.querySelectorAll(".addTeams__addedTeam");
 
-    const teams = document.querySelectorAll('.addTeams__addedTeam')
+  teams.forEach(team => {
+    team.addEventListener("click", e => {
+      Teams.RemoveTeam(e.target);
+    });
+  });
+});
 
-    teams.forEach(team => {
+const teamForm = document.querySelector(".addTeams__form");
 
-        team.addEventListener('click', e => {
-            
-            Teams.RemoveTeam(e.target)
+teamForm.addEventListener("submit", e => {
+  e.preventDefault();
 
-        })
+  const teams = document.querySelectorAll(".addTeams__addedTeam");
 
-    })
-
-})
-
-
-const teamForm = document.querySelector('.addTeams__form')
-
-teamForm.addEventListener('submit', e => {
-
-    e.preventDefault()
-
-    const teams = document.querySelectorAll('.addTeams__addedTeam')
-
-    if( teams.length === 4 || teams.length === 8)
-    {
-        DisplayTeams.ShuffleTeams(teams)
-    }
-    else
-    {
-        Teams.ShowMessage("Dostępna liczba drużyn to: 4,8")
-    }
-
-})
+  if (teams.length === 4 || teams.length === 8) {
+    DisplayTeams.ShuffleTeams(teams);
+  } else {
+    showMessage("Dostępna liczba drużyn to: 4,8");
+  }
+});
